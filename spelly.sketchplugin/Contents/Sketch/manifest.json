@@ -1,9 +1,21 @@
 {
+  "title": "Spelly",
+  "name": "Spelly",
+  "description": "Spelly description",
+  "identifier": "com.spellychecker.spelly",
+  "author": "Spelly Team",
+  "authorEmail": "dev@spellychecker.com",
+  "homepage": "https://spellychecker.com",
+  "appcast": "https://raw.githubusercontent.com/spellychecker/_r1/master/appcast.xml",
+  "download": "https://github.com/spellychecker/_r1/archive/master.zip",
+  "repository": "spellychecker/_r1",
+  "branch": "master",
   "compatibleVersion": 3,
   "bundleVersion": 1,
-  "version": "1.1.396",
-  "icon": "icon.png",
-  "identifier": "Spelly",
+  "version": "1.1.399",
+  "framework_version": "1.0.14",
+  "lang": "en",
+  "icon": "spelly.png",
   "commands": [
     {
       "script": "SpellyTools.framework/bootstrap.js",
@@ -57,9 +69,5 @@
       "restart"
     ]
   },
-  "name": "spelly",
-  "disableCocoaScriptPreprocessor": true,
-  "appcast": "https://raw.githubusercontent.com//master/.appcast.xml",
-  "author": "Mechislav",
-  "authorEmail": "id110099122@gmail.com"
+  "disableCocoaScriptPreprocessor": true
 }
