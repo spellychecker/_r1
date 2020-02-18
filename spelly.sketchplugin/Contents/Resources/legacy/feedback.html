@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../legacy-css/animate.css">
+    <link rel="stylesheet" href="../legacy-css/anim-icons.css">
+    <link rel="stylesheet" href="../legacy-css/reset.css">
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../legacy-css/icons.css">
+    <link rel="stylesheet" href="../legacy-css/base.css">
+    <link rel="stylesheet" href="../legacy-css/forms.css">
+    <link rel="stylesheet" href="../legacy-css/feedback.css">
+    <script src="../build/legacy/vue.js"></script>
+</head>
+
+<body scroll="no">
+<div id="app" class="container" v-bind:class="{['page-' + page]: true}">
+
+    <div v-if="page == 'form'">
+        <div class="row">
+            <div class="col-12 not-selectable">
+                <div class="row">
+                    <div class="col-12">
+                        <label class="feedback-label">
+                            <span class="placeholder">Choose Topic</span>
+                            <!--                        <span class="placeholder error">Please choose a topic</span>-->
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="feedback-select-group list-group list-group-horizontal not-selectable">
+                            <a
+                                    href="#"
+                                    v-for="topic in topics"
+                                    class="list-group-item list-group-item-action"
+                                    v-bind:class="{active: selected_topic == topic.id}"
+                                    v-on:click="selected_topic = topic.id"
+                            >
+                                <i class="material-icons">{{ topic.icon }}</i>
+                                <span>{{ topic.name }}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="row not-selectable">
+                    <div class="col-12">
+                        <label class="feedback-label" for="message-input">
+                            <span class="placeholder" v-if="!submitting || message.trim().length">Message</span>
+                            <span class="placeholder error" v-if="submitting && !message.trim().length">Please enter your message</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <textarea class="form-control" id="message-input" rows="8" v-model="message"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row not-selectable">
+            <div class="col-12">
+                <div class="row common-actions">
+                    <div class="col-6 text-left">
+                        <a href="#" class="btn btn-secondary" v-on:click="cancel()">Cancel</a>
+                    </div>
+                    <div class="col-6 text-right">
+                        <a href="#" class="btn btn-primary" v-on:click="submit()">Submit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div v-else-if="page == 'loading'" class="not-selectable">
+        <div class="v-center finish-card">
+            <div class="row">
+                <div class="col-12">
+                    <svg width="64" height="30" class="loading-img" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+                        <circle cx="15" cy="15" r="15">
+                            <animate attributeName="r" from="15" to="15"
+                                     begin="0s" dur="0.8s"
+                                     values="15;9;15" calcMode="linear"
+                                     repeatCount="indefinite"/>
+                            <animate attributeName="fill-opacity" from="1" to="1"
+                                     begin="0s" dur="0.8s"
+                                     values="1;.5;1" calcMode="linear"
+                                     repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="60" cy="15" r="9" fill-opacity="0.3">
+                            <animate attributeName="r" from="9" to="9"
+                                     begin="0s" dur="0.8s"
+                                     values="9;15;9" calcMode="linear"
+                                     repeatCount="indefinite"/>
+                            <animate attributeName="fill-opacity" from="0.5" to="0.5"
+                                     begin="0s" dur="0.8s"
+                                     values=".5;1;.5" calcMode="linear"
+                                     repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="105" cy="15" r="15">
+                            <animate attributeName="r" from="15" to="15"
+                                     begin="0s" dur="0.8s"
+                                     values="15;9;15" calcMode="linear"
+                                     repeatCount="indefinite"/>
+                            <animate attributeName="fill-opacity" from="1" to="1"
+                                     begin="0s" dur="0.8s"
+                                     values="1;.5;1" calcMode="linear"
+                                     repeatCount="indefinite"/>
+                        </circle>
+                    </svg>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div v-else-if="page == 'screenshot'" class="not-selectable">
+        <div class="v-center w-75">
+            <div class="row animated fadeInUp fast">
+                <div class="col-12">
+                    <p class="w-75 m-auto text-center  animated fadeInDown faster" style="font-size: 18px;">
+                        Take a screenshot of <strong>Sketch</strong>?
+                    </p>
+                    <div class="row m-auto w-75 pt-4  animated fadeInDown faster">
+                        <div class="col-6">
+                            <a href="#" class="btn clickable btn-secondary w-100 animated fadeInDown faster" v-bind:class="{disabled: screen_pending}" v-on:click="finish()">Dismiss</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="btn clickable btn-primary w-100- btn-finish-ok animated fadeInDown faster" v-bind:class="{disabled: screen_pending}" v-on:click="screen()">Capture</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div v-else-if="page == 'screen-preview'" class="not-selectable">
+        <div class="row">
+            <div class="col-12 screenshot-preview animated fadeIn faster" v-bind:style="{'background-image': 'url(' + screen_src + ')'}">
+                <div class="screenshot-actions  animated fadeInUp faster">
+                    <div class="row v-center w-100">
+                        <div class="col-4">
+                            <span class="screenshot-title  animated fadeInUp faster">Looks ok?</span>
+                        </div>
+                        <div class="col-8 text-right">
+                            <a href="#" class="btn clickable btn-secondary animated fadeInUp fast" style="width: 120px;" v-bind:class="{disabled: screen_pending}" v-on:click="screen()">Retake</a>
+                            <a href="#" class="btn clickable btn-primary ml-2  animated fadeInUp fast" style="width: 120px;" v-bind:class="{disabled: screen_pending}" v-on:click="submitScreenshot()">Confirm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div v-else-if="page == 'finish'" class="v-center finish-card not-selectable">
+        <div class="card-container">
+            <div class="row">
+                <div class="col-12  ">
+                    <div class="animated slower pulse infinite">
+                        <div class="svg-box animated bounceIn slow">
+                            <svg class="circular green-stroke">
+                                <circle class="path" cx="75" cy="75" r="50" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                            </svg>
+                            <svg class="checkmark green-stroke">
+                                <g transform="matrix(0.79961,8.65821e-32,8.39584e-32,0.79961,-489.57,-205.679)">
+                                    <path class="checkmark__check" fill="none" d="M616.306,283.025L634.087,300.805L673.361,261.53"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="animated fadeInDown faster">
+                        <h4 class="pb-2 thanks-title  animated fadeInUp fast">Thanks!</h4>
+                        <p class="thanks-message">Your feedback has been sent to Spelly team. We will reach out to you soon.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-4  animated bounceIn  delay-1s">
+                <div class="col-12 text-center">
+                    <a href="#" class="btn btn-primary btn-finish-ok  animated fadeInDown faster" v-on:click="cancel()">OK</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script src="../lib/jquery.min.js"></script>
+<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../build/legacy/api.js?t=1"></script>
+<script src="../build/legacy/feedback.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,195 @@
+body.theme-dark {
+    color: #FFF;
+}
+
+body.theme-light {
+    color: #000;
+}
+
+body {
+    background-color: transparent;
+
+    overflow: hidden;
+    height: 100vh;
+
+    font-size: 14px;
+
+}
+
+
+#app {
+    height: 100%;
+}
+
+.v-center {
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+
+.feedback-label .placeholder {
+
+}
+
+.feedback-label .placeholder.error {
+    color: red;
+}
+
+
+.feedback-select-group .list-group-item {
+    cursor: pointer;
+    line-height: 11px;
+    text-align: center;
+}
+
+
+.feedback-select-group .list-group-item i, .feedback-select-group .list-group-item span {
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+
+.common-actions a {
+    width: 180px;
+}
+
+
+#message-input {
+    resize: none;
+}
+
+
+
+.card-container {
+    position: relative;
+}
+
+
+.finish-card {
+    opacity: 0;
+
+
+    width: 290px;
+    text-align: center;
+
+    animation: 1s finish-card-in ease;
+    animation-delay: 0ms;
+
+    -webkit-animation-fill-mode: forwards;
+}
+
+.finish-card .thanks-title {
+    opacity: 0;
+    position: relative;
+    top: -50px;
+    transform: scale(1);
+
+
+    animation: 600ms thanks-title-in ease;
+    animation-delay: 200ms;
+
+    -webkit-animation-fill-mode: forwards;
+}
+
+.finish-card .thanks-message {
+    transform: scale(1);
+    position: relative;
+    top: -10px;
+    opacity: 0;
+
+
+    animation: 600ms thanks-message-in ease;
+    animation-delay: 400ms;
+
+    -webkit-animation-fill-mode: forwards;
+}
+
+.btn-finish-ok {
+    width: 120px;
+}
+
+
+@keyframes finish-card-in {
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes thanks-title-in {
+    50% {
+        transform: scale(1.25);
+    }
+
+    100%{
+        position: relative;
+        top: 0;
+        right: 0;
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes thanks-message-in {
+    50% {
+        transform: scale(1.25);
+    }
+
+    100%{
+        position: relative;
+        top: 0;
+        left: 0;
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+
+
+
+
+
+
+.screenshot-preview {
+    height: 100vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    background-position: top;
+}
+
+
+.screenshot-actions {
+    position: absolute;
+    width: 100vw;
+    height: 90px;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(51, 58, 68, 0.90);
+    /* position: relative; */
+}
+
+.screenshot-title {
+    color: #fff;
+    font-size: 25px;
+    display: block;
+    margin-left: 20px;
+}
+
+
+
+
+
+
+/*loading*/
+
+.theme-dark .loading-img {
+    fill: #fff;
+}
+
+.theme-light .loading-img {
+    fill: #333a44;
+}

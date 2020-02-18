@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <!--<link rel="stylesheet" href="../legacy-css/grid.css">-->
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../legacy-css/icons.css">
+    <link rel="stylesheet" href="../legacy-css/reset.css">
+    <link rel="stylesheet" href="../legacy-css/login.css">
+
+    <script src="../js/build/legacy/vue.js"></script>
+</head>
+
+<body scroll="no">
+
+<div id="app" class="container">
+
+    <div v-if="error">
+        <!-- Authentication / Session corruption -->
+        <div v-if="[3,-100].indexOf(error.code) > -1">
+            <div v-if="error">
+                <span style="color: red;">Authenticate</span>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="form-email">Email</label>
+                    <input type="text" class="form-control" id="form-email" v-model="email" placeholder="example@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label for="form-password">Password</label>
+                    <input type="password" class="form-control" id="form-password" v-model="password" placeholder="Password">
+                </div>
+            </form>
+        </div>
+
+        <!-- Not activated -->
+        <div v-if="[9,32,33].indexOf(error.code) > -1">
+            <span style="color: red;">Activation</span>
+
+            <div v-if="error.has_trial">
+                <button v-on:click="activateTrial()">Activate Trial</button>
+            </div>
+            <form v-else>
+                <h3>Activation code</h3>
+                <div class="form-group">
+                    <textarea cols="25" rows="5" v-model="activation_code"></textarea>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    {{error}}
+</div>
+
+<script src="../lib/jquery.min.js"></script>
+<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../js/build/legacy/api.js"></script>
+<script src="../js/build/legacy/login.js"></script>
+</body>
+
+</html>

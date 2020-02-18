@@ -1,0 +1,401 @@
+/* Fonts */
+
+@font-face {
+    font-family: "SF Pro Display";
+    font-weight: 100;
+    src: url("fonts/SF-Pro-Display-Ultralight.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    font-weight: 200;
+    src: url("fonts/SF-Pro-Display-Thin.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    font-weight: 300;
+    src: url("fonts/SF-Pro-Display-Light.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("fonts/SF-Pro-Display-Regular.otf") format("opentype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    font-weight: 500;
+    src: url("fonts/SF-Pro-Display-Medium.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    font-weight: 600;
+    src: url("fonts/SF-Pro-Display-Semibold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    font-weight: 700;
+    src: url("fonts/SF-Pro-Display-Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    font-weight: 800;
+    src: url("fonts/SF-Pro-Display-Heavy.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    font-weight: 900;
+    src: url("fonts/SF-Pro-Display-Black.otf") format("opentype");
+}
+
+
+/* Animation helpers */
+@keyframes pulse-animation {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 105, 0.7), 0 0 0 0 rgba(255, 107, 105, 0.7);
+    }
+
+    40% {
+        box-shadow: 0 0 0 5px rgba(255, 107, 105, 0), 0 0 0 0 rgba(255, 107, 105, 0.7);
+    }
+
+    80% {
+        box-shadow: 0 0 0 5px rgba(255, 107, 105, 0), 0 0 0 8px rgba(255, 107, 105, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 105, 0), 0 0 0 8px rgba(255, 107, 105, 0);
+    }
+}
+
+
+/* Main Styles */
+
+
+
+.not-selectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    cursor: default;
+}
+
+body {
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    cursor: default;
+
+
+
+    overflow: hidden;
+    padding: 1px;
+    background-color: transparent;
+
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.content {
+    overflow: hidden;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.common-actions {
+    float: right;
+}
+
+header {
+    position: relative;
+    top: -1px;
+
+    padding-bottom: 9px;
+    margin-bottom: 15px;
+
+    /*border-bottom: 1px solid #d8d8d8;*/
+}
+
+header .head-line {
+    border-bottom: 1px solid #d8d8d8;
+    background-color: #ECECEC;
+    height: 1px;
+    width: calc(100% + 17px * 2);
+    position: absolute;
+    left: -17px;
+    bottom: -3px;
+}
+
+.mistakes-count {
+    font-size: 16px;
+    line-height: 27px;
+    font-weight: bold;
+    vertical-align: middle;
+
+
+    height: 16px;
+    color: #36373C;
+    font-family: "SF Pro Display";
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.mistakes-count img {
+    vertical-align: middle;
+}
+
+#app {
+    /*position: absolute;*/
+    /*width: calc(100% - 30px * 2);*/
+    /*height: calc(100% - 30px);*/
+    /*top: 30px;*/
+    /*right: 0;*/
+    /*bottom: 0;*/
+    /*left: 30px;*/
+    padding: 20px;
+}
+
+main {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#main-view {
+    height: 160px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    padding: 0;
+}
+
+.misspelled-block {
+    border-bottom: 1px solid #d8d8d8;
+    position: relative;
+}
+
+.misspelled-block__suggestions__item {
+    margin-right: 10px;
+    color: #69BC35;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.misspelled-block__suggestions__item:hover {
+    color: #5880ff;
+    cursor: pointer;
+}
+
+.misspelled-block__sentence {
+    color: #b8b8b8;
+
+    font-size: 14px;
+}
+
+.misspelled__word--hightlight {
+    color: #ff6a67;
+    font-weight: bold;
+}
+
+.misspelled__word--gray {
+    color: #b8b8b8;
+}
+
+.misspelled__word__suffix {
+    display: inline-block;
+    width: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.misspelled-block__more-suggestions {
+    /*position: absolute;*/
+    /*background-color: #FFF;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*left: 0;*/
+    /*top: 0;*/
+}
+
+.container-progress {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+
+    z-index: 1000;
+}
+
+.container-progress .progress {
+    height: 3px;
+    border-radius: 0 0 10px 10px;
+}
+
+.spelly-panel {
+    border-radius: 5px;
+    border: 1px solid #ECECEC;
+    height: calc(100vh - 50px - 20px);;
+    width: 100%;
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+
+    padding: 15px 18px 15px 32px;
+
+    display: none;
+}
+
+.spelly-panel.active {
+
+}
+
+.spelly-btn {
+    height: 32px;
+    width: 32px;
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
+    line-height: 32px;
+    border-radius: 100%;
+    position: fixed;
+    bottom: 8px;
+    right: 20px;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.spelly-btn--feedback {
+    height: 32px;
+    width: 160px;
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.05);
+    line-height: 32px;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 8px;
+    right: 62px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    margin-right: 5px;
+    text-align: center;
+    background-color: rgba(56, 87, 103, 1);
+    /*background-color: rgba(56, 87, 103, 0.8);*/
+    line-height: 32px;
+    font-weight: 500;
+}
+
+.spelly-btn--feedback i, .spelly-btn--feedback span {
+    font-size: 16px;
+    color: #ffffff;
+    vertical-align: middle;
+    /* text-shadow: 1px 1px #6d4a4a; */
+}
+
+.spelly-btn--feedback:hover {
+    background-color: rgba(79, 123, 146, 0.9);
+}
+
+.spelly-btn--feedback:active {
+    background-color: hsla(200, 39%, 27%, 0.9);
+    box-shadow: inset 2px 2px 2px rgba(0,0,0,0.2);
+    padding: 1px 0px 0 2px;
+}
+
+.spelly-btn.has-errors {
+    background-color: #FF6A67;
+    animation: pulse-animation 2s ease infinite;
+}
+.spelly-btn.success {
+    background-color: #33dd7e;
+}
+.spelly-btn.scanning {
+    background-color: #23b7ff;
+}
+
+.spelly-btn > span {
+    display: inline-block;
+    height: 15px;
+    width: 100%;
+    color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 15px;
+    text-align: center;
+
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/*@media (min-width: 160px) {*/
+@media (min-width: 296px) {
+    .spelly-panel {
+        display: block;
+    }
+}
+
+.focus-arrow {
+    vertical-align: middle;
+    font-size: 23px;
+    color: #8e8e8e;
+}
+
+.focus-arrow-link.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.set-target-btn i {
+    color: #b8b8b8;
+    font-weight: 100;
+    font-size: 18px;
+}
+
+.set-target-btn {
+    width: 16px;
+}
+
+.suggestion-actions {
+    width: 130px;
+    padding-right: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #727272;
+}
+
+.spelly-btn i {
+    line-height: 32px;
+    font-size: 18px;
+}
+
+a {
+    cursor: pointer;
+}
+
+body {
+    /*background-color: red !important;*/
+}

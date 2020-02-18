@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../legacy-css/icons.css">
+    <link rel="stylesheet" href="../legacy-css/reset.css">
+    <link rel="stylesheet" href="../legacy-css/settings.css">
+    <!--<link rel="stylesheet" href="../legacy-css/app.css">-->
+    <!---->
+    <!--<script src="../js/build/legacy/vue.js"></script>-->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .not-selectable {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            cursor: default;
+        }
+    </style>
+    <script>
+        function def(e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+    </script>
+</head>
+
+<body scroll="no">
+<!--TODO: REFACTOR!!! asap-->
+<script>
+    function setState(object) {
+        const ul = document.getElementById('list');
+        ul.innerHTML = '';
+        Object.keys(object.learned).forEach(word => {
+            const li = document.createElement('li');
+            li.innerHTML = word;
+            ul.appendChild(li);
+        });
+    }
+</script>
+<div>
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">General</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            learned:
+            <ul id="list"></ul>
+        </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+    </div>
+</div>
+
+<script src="../lib/jquery.min.js"></script>
+<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+<!--<script src="../js/build/legacy/exported/helpers.js"></script>-->
+<!--<script src="../js/build/legacy/api.js"></script>-->
+<!--<script src="../js/build/legacy/app.js"></script>-->
+</body>
+
+</html>

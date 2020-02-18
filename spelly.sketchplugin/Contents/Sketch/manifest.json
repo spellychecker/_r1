@@ -1,0 +1,65 @@
+{
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "version": "1.1.396",
+  "icon": "icon.png",
+  "identifier": "Spelly",
+  "commands": [
+    {
+      "script": "SpellyTools.framework/bootstrap.js",
+      "identifier": "bootstrap",
+      "handlers": {
+        "actions": {
+          "run": "onStartup",
+          "onRun": "onStartup",
+          "Startup": "onStartup"
+        }
+      }
+    },
+    {
+      "script": "main.js",
+      "identifier": "runtime",
+      "handlers": {
+        "actions": {
+          "run": "onRun",
+          "onRun": "onRun",
+          "Startup": "onStartup",
+          "OpenDocument": "onOpenDocument",
+          "CloseDocument": "onCloseDocument",
+          "onDocumentChanged": "onDocumentChanged",
+          "TextChanged.finish": "onTextChanged",
+          "SelectionChanged.finish": "onSelectionChanged",
+          "HandleURL": "onHandleURL",
+          "Undo.finish": "onUndo",
+          "Redo.finish": "onRedo"
+        }
+      }
+    },
+    {
+      "name": "Restart",
+      "identifier": "restart",
+      "shortcut": "",
+      "script": "main.js",
+      "handler": "onRestart"
+    },
+    {
+      "name": "Run",
+      "identifier": "run",
+      "shortcut": "",
+      "script": "main.js",
+      "handler": "onRun"
+    }
+  ],
+  "menu": {
+    "title": "Spelly",
+    "items": [
+      "run",
+      "restart"
+    ]
+  },
+  "name": "spelly",
+  "disableCocoaScriptPreprocessor": true,
+  "appcast": "https://raw.githubusercontent.com//master/.appcast.xml",
+  "author": "Mechislav",
+  "authorEmail": "id110099122@gmail.com"
+}

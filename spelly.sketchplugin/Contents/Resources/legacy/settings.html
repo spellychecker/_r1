@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../legacy-css/icons.css">
+    <link rel="stylesheet" href="../legacy-css/reset.css">
+    <link rel="stylesheet" href="../legacy-css/settings.css">
+    <script src="../js/build/legacy/vue.js"></script>
+</head>
+
+<body scroll="no">
+<!--TODO: REFACTOR!!! asap-->
+<div id="app">
+    <ul class="nav nav-pills" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">General</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Dictionary</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <select @change="onLanguageSelected($event)" v-model="selectedLanguage">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <option value="de">Deutsch</option>
+            </select>
+        </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <ul class="pt-2 pl-2" style="overflow-y: scroll;">
+                <li v-for="word in Object.keys(dictionary.learned)">
+                    <div class="row">
+                        <div class="col">{{word}}</div>
+                        <div class="col">
+                            <span class="clickable" v-on:click="removeFromLearned(word)">
+                                <i class="material-icons">close</i>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <ul class="pt-2 pl-2" style="overflow-y: scroll;">
+                <li v-for="word in Object.keys(dictionary.ignored)">
+                    <div class="row">
+                        <div class="col">{{word}}</div>
+                        <div class="col">
+                            <span class="clickable" v-on:click="removeFromIgnored(word)">
+                                <i class="material-icons">close</i>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="../lib/jquery.min.js"></script>
+<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../js/build/legacy/api.js?t=1"></script>
+<script src="../js/build/legacy/settings.js"></script>
+</body>
+
+</html>

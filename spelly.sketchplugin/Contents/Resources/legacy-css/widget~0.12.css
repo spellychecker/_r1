@@ -1,0 +1,160 @@
+/* Main Styles */
+
+.not-selectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    cursor: default;
+}
+
+body {
+    overflow: hidden;
+    padding: 1px;
+    background-color: transparent;
+}
+
+.content {
+    overflow: hidden;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.common-actions {
+    float: right;
+}
+
+header {
+    position: relative;
+    top: -1px;
+
+    padding-bottom: 9px;
+    margin-bottom: 15px;
+
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.mistakes-count {
+    font-size: 16px;
+    line-height: 27px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.mistakes-count img {
+    vertical-align: middle;
+}
+
+#app {
+
+}
+
+main {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.main-view {
+    height: 245px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    padding: 0;
+}
+
+.misspelled-block {
+    border-bottom: 1px solid #d8d8d8;
+    position: relative;
+}
+
+.misspelled-block__suggestions__item {
+    margin-right: 10px;
+}
+
+.misspelled-block__suggestions__item:hover {
+    color: #5880ff;
+    cursor: pointer;
+}
+
+.misspelled-block__sentence {
+    color: #b8b8b8;
+}
+
+.misspelled__word--hightlight {
+    color: #ff6a67;
+    font-weight: bold;
+}
+
+.misspelled__word--gray {
+    color: #b8b8b8;
+}
+
+.misspelled__word__suffix {
+    display: inline-block;
+    width: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.misspelled-block__more-suggestions {
+    /*position: absolute;*/
+    /*background-color: #FFF;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*left: 0;*/
+    /*top: 0;*/
+}
+
+.container-progress {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+
+    z-index: 1000;
+}
+
+.container-progress .progress {
+    height: 3px;
+    border-radius: 0 0 10px 10px;
+}
+
+.spelly-panel {
+    border-radius: 5px;
+    border: 1px solid #d8d8d8;
+    height: calc(100vh - 2px);
+    width: 100%;
+    background-color: #FFF;
+
+    padding: 15px 32px;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.spelly-btn {
+    height: 32px;
+    width: 32px;
+    background-color: #FF6A67;
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
+    line-height: 32px;
+    border-radius: 100%;
+}
+
+.spelly-btn > span {
+    display: inline-block;
+    height: 15px;
+    width: 100%;
+    color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 15px;
+    text-align: center;
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <!--<link rel="stylesheet" href="../legacy-css/grid.css">-->
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../legacy-css/icons.css">
+    <link rel="stylesheet" href="../legacy-css/reset.css">
+    <link rel="stylesheet" href="../legacy-css/widget.css">
+
+    <script src="../js/build/legacy/vue.js"></script>
+</head>
+
+<body scroll="no">
+
+<div id="app">
+
+    <div class="spelly-panel active" v-bind:style="{'background-color': 'rgba(255,255,255,' + bg_opacity + ')'}">
+        <div v-if="progress.remain > 0" class="container-progress">
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" v-bind:style="{ width: (progress.current / Math.max(progress.total, 1) * 100) + '%'}"></div>
+            </div>
+        </div>
+
+        <header class="row" style="padding-right: 13px;margin-left: -25px;">
+            <div class="col mistakes-count">
+                <div class="row">
+                    <div class="col" v-if="!activated">
+                        Not activated
+                    </div>
+                    <div class="col" v-else-if="customMessage">
+                        {{customMessage}}
+                    </div>
+                    <div class="col" v-else>
+                        <!--<img src="images/load.svg" alt="" v-if="scanning">-->
+                        <!--{{ scanning ? 'checking...' : (words.length ? words.length + ' mistakes' : 'Well done!') }}-->
+                        <!--{{ (words.length ? words.length + ' mistakes' : 'Well done!') }}-->
+                        {{ scanning ? 'Checking' : (words.length ? words.length + ' mistakes' : 'Well done!') }}
+
+                        <span v-if="lastSuggest !== null && countWords(lastSuggest.word) > 1">
+                            <a href="#" style="font-size: 10px;" v-on:click="correctAll(lastSuggest.word, lastSuggest.suggestion)">Correct all <b>{{lastSuggest.word}}</b> -> <b>{{lastSuggest.suggestion}}</b></a>
+                        </span>
+
+                        <span style="display: inline-block;margin-left: 14px;position: absolute;">
+                            <a href="#" v-on:click="focusPrevious()" class="focus-arrow-link" v-bind:class="{ disabled: !has_focus_prev}">
+                                <i class="material-icons focus-arrow">keyboard_arrow_left</i>
+                            </a>
+                            <a href="#" v-on:click="focusNext()" class="focus-arrow-link" v-bind:class="{ disabled: !has_focus_next}">
+                                <i class="material-icons focus-arrow">keyboard_arrow_right</i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col" style="margin-right: -15px;">
+                <div class="actions">
+                    <span class="clickable" v-on:click="changelog()">
+                        <i class="material-icons">history</i>
+                    </span>
+                    <span class="clickable" v-on:click="settings()">
+                        <i class="material-icons">settings</i>
+                    </span>
+                    <span class="clickable" v-on:click="min()" v-if="expanded">
+                        <i class="material-icons"><i class="material-icons">close</i></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="head-line"></div>
+        </header>
+
+        <main class="content row">
+            <div id="main-view" class="col-sm-12">
+                <ul id="errors-list">
+                    <li v-for="(item, index) in formattedWords" v-bind:id="'error-index-' + index" class="misspelled-block">
+                        <div class="row">
+                            <div class="col misspelled-block__more-suggestions" v-if="item.more_suggestions">
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="#" v-on:click="hideMoreSuggestions(item)">&lt;</a>
+
+                                        <div class="row">
+                                            <div v-for="suggestion in item.data.suggestions" class="misspelled-block__suggestions__item col" v-on:click="correctTo(item, suggestion)">
+                                                {{suggestion}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label>
+                                            <input type="text" placeholder="Type your own option" v-on:keyup="reload()" v-on:keydown="correctToCustomDown($event, item)" v-model="item.custom_suggestion">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col misspelled-block__sentence" v-if="!item.more_suggestions">
+                                <!--(Occurs {{ _occurs[item.data.word] }} times)&nbsp;-->
+                                <span v-html="item.sentence_html"></span>
+                            </div>
+                            <div class="col" v-if="!item.more_suggestions">
+                                <div class="row">
+                                    <div class="set-target-btn">
+                                        <div v-if="offscreen[item.layerID]">
+                                            <i class="material-icons">visibility_off</i>
+                                        </div>
+                                        <a v-else href="#" v-on:click="setTarget(item)">
+                                            <!--<i class="material-icons">gps_fixed</i>-->
+                                            <i class="material-icons">filter_center_focus</i>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <div class="misspelled-block__suggestions row">
+                                            <!--suggestion-->
+                                            <div v-for="suggestion in item.data.suggestions.slice(0,3)" class="misspelled-block__suggestions__item col" v-on:click="correctTo(item, suggestion)">
+                                                {{suggestion}}
+                                            </div>
+
+                                            <div class="col">
+                                                <a href="#" v-if="item.data.suggestions.length > 3" v-on:click="showMoreSuggestions(item)">more</a>
+                                                <input v-if="item.data.suggestions.length === 0" type="text" placeholder="Type your own option" v-on:keyup="reload()" v-on:keydown="correctToCustomDown($event, item)" v-model="item.custom_suggestion">
+                                            </div>
+                                            <!--/suggestion-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="suggestion-actions" v-if="!item.more_suggestions && !item.custom_suggestion.length">
+                                <a v-on:click="learn(item)">Learn</a>
+                                <a v-on:click="ignore(item)">Ignore</a>
+                            </div>
+                            <div class="suggestion-actions" v-if="item.custom_suggestion.length">
+                                <a v-on:click="correctToCustom(item)">apply</a>
+                                <a v-on:click="hideMoreSuggestions(item)">cancel</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+
+    <div class="spelly-btn clickable" v-bind:class="{scanning: scanning, success: !scanning && !words.length, 'has-errors': !scanning && words.length}" v-on:click="switchSize()">
+        <span>
+            <i v-if="scanning" class="material-icons">search</i>
+            <span v-else>
+                <span v-if="words.length">{{ words.length }}</span>
+                <i v-else class="material-icons">check</i>
+            </span>
+        </span>
+    </div>
+
+    <div class="spelly-btn--feedback clickable" v-on:click="feedback()">
+        <span>
+            <i class="material-icons">question_answer</i>
+            <span>Give Feedback</span>
+        </span>
+    </div>
+</div>
+
+<script src="../lib/jquery.min.js"></script>
+<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../build/legacy/exported/helpers.js"></script>
+<script src="../build/legacy/api.js"></script>
+<script src="../build/legacy/widget.helpers.js"></script>
+<script src="../build/legacy/widget.js"></script>
+</body>
+
+</html>

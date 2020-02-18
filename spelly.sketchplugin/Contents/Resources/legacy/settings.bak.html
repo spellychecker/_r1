@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../legacy-css/icons.css">
+    <link rel="stylesheet" href="../legacy-css/reset.css">
+    <!--<link rel="stylesheet" href="../legacy-css/app.css">-->
+<!---->
+    <!--<script src="../js/build/legacy/vue.js"></script>-->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .not-selectable {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            cursor: default;
+        }
+    </style>
+    <script>
+        function def(e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+    </script>
+</head>
+
+<body style="background-color: #FFF;">
+
+<div style="width: 100%; background-color: red; height: 25px; -webkit-app-region: drag;-webkit-app-region: drag;app-region:drag;" class="not-selectable" onmousedown="def(event)"></div>
+<div style="width: 100%; background-color: blue; height: 25px; -webkit-app-region: drag;-webkit-app-region: drag;app-region:drag;" onmousedown="def(event)"></div>
+<div style="width: 100%; background-color: green; height: 25px; -webkit-app-region: drag;-webkit-app-region: drag;app-region:drag;" ></div>
+
+
+<div class="container">
+
+    <h4>wlqknfkew</h4>
+    <h4>werfawarwef</h4>
+    <h4>23rewafe</h4>
+    <h4>54tgrds4</h4>
+    <h4>wlqknfkew</h4>
+    <h4>werfawarwef</h4>
+    <h4>23rewafe</h4>
+    <h4>54tgrds4</h4>
+    <h4>wlqknfkew</h4>
+    <h4>werfawarwef</h4>
+    <h4>23rewafe</h4>
+    <h4>54tgrds4</h4>
+    <h4>wlqknfkew</h4>
+    <h4>werfawarwef</h4>
+    <h4>23rewafe</h4>
+    <h4>54tgrds4</h4>
+    <h4>wlqknfkew</h4>
+    <h4>werfawarwef</h4>
+    <h4>23rewafe</h4>
+    <h4>54tgrds4</h4>
+    <h4>wlqknfkew</h4>
+    <h4>werfawarwef</h4>
+    <h4>23rewafe</h4>
+    <h4>54tgrds4</h4>
+</div>
+
+<script src="../lib/jquery.min.js"></script>
+<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+<!--<script src="../js/build/legacy/exported/helpers.js"></script>-->
+<!--<script src="../js/build/legacy/api.js"></script>-->
+<!--<script src="../js/build/legacy/app.js"></script>-->
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+.body {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+.not-selectable, .not-selectable * {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+
+    cursor: default;
+}
+
+.clickable {
+    cursor: pointer;
+}
