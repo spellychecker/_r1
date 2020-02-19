@@ -6,7 +6,7 @@
     <description>Spelly description</description>
     <language>en</language>
     <item>
-      <title>Version 1.1.399</title>
+      <title>Version 1.1.401</title>
       <description>
         <![CDATA[
 					<ul>
@@ -14,7 +14,7 @@
 					</ul>
 				]]>
       </description>
-      <enclosure url="https://github.com/spellychecker/_r1/archive/master.zip" sparkle:version="1.1.399" type="application/octet-stream" />
+      <enclosure url="https://github.com/spellychecker/_r1/archive/master.zip" sparkle:version="1.1.401" type="application/octet-stream" />
     </item>
   </channel>
 </rss>

@@ -10,8 +10,8 @@
   "download": "https://github.com/spellychecker/_r1/archive/master.zip",
   "repository": "spellychecker/_r1",
   "branch": "master",
-  "version": "2.1.399",
-  "frameworkVersion": "2.0.14",
+  "version": "1.1.401",
+  "frameworkVersion": "1.0.14",
   "bundleVersion": 1,
   "compatibleVersion": 3,
   "lang": "en",
@@ -68,5 +68,6 @@
       "run",
       "restart"
     ]
-  }
+  },
+  "disableCocoaScriptPreprocessor": true
 }
